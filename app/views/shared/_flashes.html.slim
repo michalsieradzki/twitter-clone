@@ -1,0 +1,11 @@
+-if notice
+  .alert.alert-info.alert-dismissible.fade.show.rounded-0.text-center role="alert"
+    =notice 
+    button.btn-close role="button" data-bs-dismiss="alert" aria-label="Close"
+      / span aria-hidden="true" &times;
+
+-if alert 
+  .alert.alert-warning.alert-dismissible.fade.show.rounded-0.text-center role="alert"
+    =alert
+    button.btn-close role="button" data-bs-dismiss="alert" aria-label="Close"
+      / span aria-hidden="true" &times;
