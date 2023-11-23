@@ -1,0 +1,11 @@
+a.twitter-link{
+  color: $twitter-blue;
+  
+  &:hover{
+    text-decoration: underline !important;
+  }
+}
+
+.twitter-text-blue{
+  color: $twitter-blue;
+}
