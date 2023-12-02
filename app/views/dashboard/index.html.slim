@@ -1,42 +1,12 @@
-  .container 
-    .row
-      aside.side-navbar.col
-        =link_to root_path, class: "d-flex align-items-center fs-2 mb-2 mb-2", id: "twitter-logo-link" do
-          .px-2.py-2.rounded-circle
-            i.bi.bi-twitter.mx-3.my-4.twitter-text-blue
-        =link_to root_path, class: "d-flex align-items-center fs-5 mb-2 text-primary" do
-          .px-4.py-2.rounded-pill 
-            i.bi.bi-house.me-4.mb-3
-            |  Home
-        =link_to root_path, class: "d-flex align-items-center fs-5 mb-2 text-primary" do 
-          .px-4.py-2.rounded-pill 
-            i.bi.bi-hash.me-4.mb-3
-            |  Explore
-        =link_to root_path, class: "d-flex align-items-center fs-5 mb-2 text-primary" do 
-          .px-4.py-2.rounded-pill 
-            i.bi.bi-bell.me-4.mb-3 
-            |  Notifications
-        =link_to root_path, class: "d-flex align-items-center fs-5 mb-2 text-primary" do 
-          .px-4.py-2.rounded-pill 
-            i.bi.bi-chat-dots.me-4.mb-3 
-            |  Messages
-        =link_to root_path, class: "d-flex align-items-center fs-5 mb-2 text-primary" do 
-          .px-4.py-2.rounded-pill 
-            i.bi.bi-bookmark.me-4.mb-3 
-            |  Bookmarks
-        =link_to root_path, class: "d-flex align-items-center fs-5 mb-4 text-primary" do 
-          .px-4.py-2.rounded-pill 
-            i.bi.bi-person.me-4.mb-3 
-            |  Profile
-        .d-flex.align-items-center.fs-6.text-primary.py-2
-          =button_tag "Tweet", class: "btn btn-twitter btn-lg mx-2 w-100 rounded-pill "
-        .d-flex.align-items-center.fs-6.text-primary.py-2
-          = link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "twitter-link"
-      .col-6
-        = form_with model: Tweet.new, url: tweets_path, local: :true do |f|
-          =f.text_field :body
-          =f.submit
-        - Tweet.find_each do |tweet|
-          =tweet.body
-      .col 
+
+.col-6
+  .mb-3
+    =link_to "Home", dashboard_path, class: "fs-4 text-decoration-none text-black fw-semibold"
+  = form_with model: Tweet.new, url: tweets_path, local: :true, class: "w-100" do |f|
+    =f.text_area :body, placeholder: "What's heppening?", class: "form-control tweet-input w-100 mb-4"
+    .d-flex.justify-content-end
+      =f.submit class: "btn btn-lg btn-twitter rounded-pill"
+  - Tweet.find_each do |tweet|
+    =tweet.body
+.col 
         

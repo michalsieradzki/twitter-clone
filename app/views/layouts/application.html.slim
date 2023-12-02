@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title
+      | TwitterClone
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+  body
+    - if flash.any?
+      = render "shared/flashes"
+    - if user_signed_in?
+        .container.py-2
+          .row
+            =render "shared/sidebar"
+            = yield
+
+    -else
+      =yield
