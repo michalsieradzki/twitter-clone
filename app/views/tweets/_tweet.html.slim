@@ -1,17 +1,18 @@
-.py-3.px-2.tweet
-  -if (Time.zone.now-tweet.created_at) > 1.day
-    p 
-      | @
-      =tweet.user.username
-      | : 
-      =tweet.created_at.strftime("%b %-d")
+=turbo_frame_tag dom_id(tweet)
+  .py-3.px-2.tweet
+    -if (Time.zone.now-tweet.created_at) > 1.day
+      p 
+        | @
+        =tweet.user.username
+        | : 
+        =tweet.created_at.strftime("%b %-d")
 
-  -else
-    p 
-      | @
-      =tweet.user.username
-      | : 
-      =time_ago_in_words(tweet.created_at)
+    -else
+      p 
+        | @
+        =tweet.user.username
+        | : 
+        =time_ago_in_words(tweet.created_at)
     p.mb-0
       =tweet.body
   
