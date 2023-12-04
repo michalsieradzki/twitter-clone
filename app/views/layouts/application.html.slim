@@ -12,6 +12,9 @@ html
     - if flash.any?
       = render "shared/flashes"
     - if user_signed_in?
+      -if controller_name == "usernames"
+        =yield
+      -else
         .container.py-2
           .row
             =render "shared/sidebar"
