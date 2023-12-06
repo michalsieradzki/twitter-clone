@@ -1,29 +1,17 @@
-=turbo_frame_tag dom_id(tweet)
+=turbo_frame_tag dom_id(tweet_presenter.tweet)
   .py-3.px-2.d-flex.tweet
     .flex-shrink-0
-      = image_tag  tweet.user.avatar, size: 40, class: "img-fulid rounded-circle"
+      = image_tag  tweet_presenter.avatar, size: 40, class: "img-fulid rounded-circle"
     .flex-grow-1.ms-3
-      -if (Time.zone.now-tweet.created_at) > 1.day
-        p.mb-0
-          span.fw-bolder
-            =tweet.user.display_name
-          span.text-muted
-            |  @
-            =tweet.user.username
-            | : 
-          span.text-muted
-            =tweet.created_at.strftime("%b %-d")
-
-      -else
-        p.mb-0
-          span.fw-bolder
-            =tweet.user.display_name
-          span.text-muted
-            |  @
-            =tweet.user.username
-            |  - 
-          span.text-muted
-            =time_ago_in_words(tweet.created_at)
       p.mb-0
-        =tweet.body
+        span.fw-bolder
+          =tweet_presenter.display_name
+        span.text-muted
+          |  @
+          =tweet_presenter.username
+          |  - 
+        span.text-muted
+          =tweet_presenter.created_at
+      p.mb-0
+        =tweet_presenter.body
   
