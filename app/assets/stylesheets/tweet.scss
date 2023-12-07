@@ -8,3 +8,26 @@
     cursor: pointer;
   }
 }
+.action-links{
+  a{
+    span {
+    position: relative;
+    }
+    &.views, &.replies, &.share {
+      &:hover{
+        color: $twitter-blue !important;
+      }
+    }
+    &.retweets{
+      &:hover{
+        color: $green-300 !important;
+      }
+    }
+    &.likes{
+      &:hover{
+        color: $red-500 !important;
+      }
+
+    }
+  }
+}

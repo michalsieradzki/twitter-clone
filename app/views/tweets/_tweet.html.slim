@@ -14,4 +14,29 @@
           =tweet_presenter.created_at
       p.mb-0
         =tweet_presenter.body
-  
+      .d-flex.justify-content-between.action-links.views
+        div
+          =link_to "#", class: "text-decoration-none text-black views" do 
+            i.bi.bi-eye
+            span  Views
+        div
+          =link_to "#", class: "text-decoration-none text-black replies" do
+            i.bi.bi-chat 
+            span  Replies
+        div
+          =link_to "#", class: "text-decoration-none text-black retweets" do
+            i.bi.bi-arrow-down-up
+            span  Retweets
+        div
+          =link_to "#", class: "text-decoration-none text-black likes" do
+            i.bi-bi-heart
+            span  Likes
+        div
+          =link_to "#", class: "text-decoration-none text-black share dropdown-toggle", data: { "bs-toggle": "share-dropdown" } do
+            i.bi.bi-bookmark
+            span  Share
+          ul.dropdown-menu
+            li
+              a.dropdown_item
+               | Action
+
