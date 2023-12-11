@@ -28,9 +28,11 @@
             i.bi.bi-arrow-down-up
             span  Retweets
         div
-          =link_to "#", class: "text-decoration-none text-black likes" do
-            i.bi-bi-heart
-            span  Likes
+            =link_to tweet_presenter.like_tweet_url, data: { "turbo-method": tweet_presenter.turbo_data_method }, class: "text-decoration-none text-black likes" do
+              i[class="bi bi-heart#{tweet_presenter.like_heart_icon}"]
+              span
+                |  
+                =tweet_presenter.likes_count
         div
           =link_to "#", class: "text-decoration-none text-black share dropdown-toggle", data: { "bs-toggle": "share-dropdown" } do
             i.bi.bi-bookmark
