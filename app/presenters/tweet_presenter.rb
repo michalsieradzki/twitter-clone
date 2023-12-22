@@ -9,7 +9,7 @@ class TweetPresenter
 
   attr_reader :tweet, :current_user
   
-  delegate :user, :body, :likes, :likes_count, to: :tweet
+  delegate :user, :body, :likes, :likes_count, :retweets_count, to: :tweet
   delegate :display_name, :username, :avatar, to: :user
 
   def created_at
@@ -37,7 +37,7 @@ class TweetPresenter
   end
   def like_heart_icon
     if tweet_liked_by_current_user?
-      "-fill"
+      "-fill text-danger"
     else
       ""
     end
@@ -45,7 +45,7 @@ class TweetPresenter
 
   def bookmark_icon
     if tweet_bookmarked_by_current_user?
-      "-fill"
+      "-fill text-success"
     else
       ""
     end
@@ -73,6 +73,36 @@ class TweetPresenter
     end
   end
 
+  def retweet_icon
+    if tweet_retweeted_by_current_user?
+      "-fill text-primary"
+    else
+      ""
+    end
+  end
+  def retweet_text
+    if tweet_retweeted_by_current_user?
+      "Retweeted"
+    else
+      "Retweet"
+    end
+  end
+  def retweet_tweet_url
+    if tweet_retweeted_by_current_user?
+      tweet_retweet_path(tweet, current_user.retweets.find_by(tweet: tweet))
+    else
+      tweet_retweets_path(tweet)
+    end
+  end
+
+  def turbo_retweet_data_method
+    if tweet_retweeted_by_current_user?
+      "delete"
+    else
+      "post"
+    end
+  end
+
 
   def tweet_liked_by_current_user
     @tweet_liked_by_current_user ||= tweet.liked_users.include?(current_user)
@@ -82,4 +112,8 @@ class TweetPresenter
     @tweet_bookmarked_by_current_user ||= tweet.bookmarked_users.include?(current_user)
   end
   alias_method :tweet_bookmarked_by_current_user?, :tweet_bookmarked_by_current_user
+  def tweet_retweeted_by_current_user
+    @tweet_retweeted_by_current_user ||= tweet.retweeted_users.include?(current_user)
+  end
+  alias_method :tweet_retweeted_by_current_user?, :tweet_retweeted_by_current_user
 end

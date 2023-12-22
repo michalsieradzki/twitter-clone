@@ -10,7 +10,7 @@ RSpec.describe "Bookmarks", type: :request do
     it "create a new bookmark" do
       expect do
         post tweet_bookmarks_path(tweet)
-      end.to change { Like.count }.by(1)
+      end.to change { Bookmark.count }.by(1)
       expect(response).to have_http_status(:redirect)
     end
 

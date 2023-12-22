@@ -24,9 +24,13 @@
             i.bi.bi-chat 
             span  Replies
         div
-          =link_to "#", class: "text-decoration-none text-black retweets" do
-            i.bi.bi-arrow-down-up
-            span  Retweets
+            =link_to tweet_presenter.retweet_tweet_url, data: { "turbo-method": tweet_presenter.turbo_retweet_data_method }, class: "text-decoration-none text-black likes" do
+              i[class="bi bi-share#{tweet_presenter.retweet_icon}"]
+              span
+                |
+                =tweet_presenter.retweets_count
+                |  
+                =tweet_presenter.retweet_text
         div
             =link_to tweet_presenter.like_tweet_url, data: { "turbo-method": tweet_presenter.turbo_like_data_method }, class: "text-decoration-none text-black likes" do
               i[class="bi bi-heart#{tweet_presenter.like_heart_icon}"]
